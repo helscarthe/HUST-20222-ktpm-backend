@@ -1,4 +1,4 @@
-const Housing = require('../models/Model')
+const Housing = require('../models/housingModel')
 
 // get all cong_dan
 const getHousings = async (req, res) => {

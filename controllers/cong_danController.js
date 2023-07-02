@@ -1,4 +1,4 @@
-const Cong_dan = require('../models/Model')
+const Cong_dan = require('../models/cong_danModel')
 
 // get all cong_dan
 const getCong_dans = async (req, res) => {
