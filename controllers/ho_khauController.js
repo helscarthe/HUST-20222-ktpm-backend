@@ -1,4 +1,4 @@
-const Ho_khau = require('../models/ho_khauModel')
+const Ho_khau = require('../models/Model')
 
 // get all ho_khau
 const getHo_khaus = async (req, res) => {

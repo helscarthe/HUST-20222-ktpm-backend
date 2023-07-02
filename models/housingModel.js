@@ -32,7 +32,23 @@ const housing_Schema = new Schema({
     type: Date,
     required: true
   }
-}, {collection: 'info_nhan_khau'})
+}, {
+  collection: 'info_nhan_khau',
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
+})
+
+housing_Schema.virtual('cong_dan', {
+  ref: 'cong_dan',
+  localField: 'id_cong_dan',
+  foreignField: 'id_cong_dan'
+});
+
+housing_Schema.virtual('nha', {
+  ref: 'ho_khau',
+  localField: 'id_nha',
+  foreignField: 'id_nha'
+});
 
 const db = mongoose.connection.useDb("nhan_khau")
 

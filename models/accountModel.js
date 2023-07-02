@@ -16,7 +16,11 @@ const account_Schema = new Schema({
     type: Number,
     required: true
   }
-}, {collection: 'dang_nhap'})
+}, {
+  collection: 'dang_nhap',
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
+})
 
 const db = mongoose.connection.useDb("nhan_khau")
 

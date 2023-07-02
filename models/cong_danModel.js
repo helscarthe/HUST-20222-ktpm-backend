@@ -39,8 +39,16 @@ const cong_dan_Schema = new Schema({
   nghe_nghiep: {
     type: String,
     required: true
+  },
+  dia_chi: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'info_nhan_khau'
   }
-}, {collection: 'cong_dan'})
+}, {
+  collection: 'cong_dan',
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
+})
 
 const db = mongoose.connection.useDb("nhan_khau")
 

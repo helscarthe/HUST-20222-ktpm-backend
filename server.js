@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cong_dan_Routes = require('./routes/cong_dan')
 const ho_khau_Routes = require('./routes/ho_khau')
+const housing_Routes = require('./routes/housing')
 const account_Routes = require('./routes/account')
 const cors = require('cors')
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/cong_dan', cong_dan_Routes)
 app.use('/api/ho_khau', ho_khau_Routes)
+app.use('/api/housing', housing_Routes)
 app.use('/login', account_Routes)
 
 // connect to db

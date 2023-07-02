@@ -11,8 +11,16 @@ const ho_khau_Schema = new Schema({
   dia_chi: {
     type: String,
     required: true
+  },
+  info_thanh_vien: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'info_nhan_khau'
   }
-}, {collection: 'ho_khau'})
+}, {
+  collection: 'ho_khau',
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
+})
 
 const db = mongoose.connection.useDb("nhan_khau")
 
