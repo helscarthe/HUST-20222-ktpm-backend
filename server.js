@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cong_dan_Routes = require('./routes/cong_dan')
 const ho_khau_Routes = require('./routes/ho_khau')
+const cors = require('cors')
 
 // make the app
 const app = express()
@@ -11,6 +12,7 @@ const app = express()
 // middleware
 // log post body
 app.use(express.json())
+app.use(cors());
 
 // log requests sent
 app.use((req, res, next) => {
