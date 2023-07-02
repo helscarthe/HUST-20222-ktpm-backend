@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const nhan_khau_Routes = require('./routes/nhan_khau')
+const cong_dan_Routes = require('./routes/cong_dan')
+const ho_khau_Routes = require('./routes/ho_khau')
 
 // make the app
 const app = express()
@@ -18,10 +19,11 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/nhan_khau', nhan_khau_Routes)
+app.use('/api/cong_dan', cong_dan_Routes)
+app.use('/api/ho_khau', ho_khau_Routes)
 
 // connect to db
-mongoose.connect(process.env.MONGO_NK_URI, {autoIndex: true})
+mongoose.connect(process.env.MONGO_URI, {autoIndex: true})
   .then(() => {
     // listen for requests
     mongoose.connection.syncIndexes().then(() => {

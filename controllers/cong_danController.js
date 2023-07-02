@@ -2,7 +2,7 @@ const Cong_dan = require('../models/cong_danModel')
 
 // get all cong_dan
 const getCong_dans = async (req, res) => {
-  const cong_dans = await Cong_dan.find({}).sort({id_cong_dan: -1})
+  const cong_dans = await Cong_dan.find({}).sort({id_cong_dan: 1})
 
   res.status(200).json(cong_dans)
 }

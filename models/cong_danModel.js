@@ -46,4 +46,6 @@ const cong_dan_Schema = new Schema({
   }
 }, {collection: 'cong_dan'})
 
-module.exports = mongoose.model('cong_dan', cong_dan_Schema)
+const db = mongoose.connection.useDb("nhan_khau")
+
+module.exports = db.model('cong_dan', cong_dan_Schema)
