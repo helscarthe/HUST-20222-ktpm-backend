@@ -6,6 +6,7 @@ const cong_dan_Routes = require('./routes/cong_dan')
 const ho_khau_Routes = require('./routes/ho_khau')
 const housing_Routes = require('./routes/housing')
 const account_Routes = require('./routes/account')
+const covid_Routes = require('./routes/covid')
 const cors = require('cors')
 
 // make the app
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use('/api/cong_dan', cong_dan_Routes)
 app.use('/api/ho_khau', ho_khau_Routes)
 app.use('/api/housing', housing_Routes)
+app.use('/api/covid', covid_Routes)
 app.use('/login', account_Routes)
 
 // connect to db
