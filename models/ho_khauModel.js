@@ -5,12 +5,8 @@ const Schema = mongoose.Schema
 const ho_khau_Schema = new Schema({
   id_nha: {
     type: Number,
-    required: false,
+    required: true,
     unique: true
-  },
-  id_chu_ho: {
-    type: Number,
-    required: true
   },
   dia_chi: {
     type: String,

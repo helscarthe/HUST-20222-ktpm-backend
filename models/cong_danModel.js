@@ -8,10 +8,6 @@ const cong_dan_Schema = new Schema({
     required: true,
     unique: true
   },
-  id_nha: {
-    type: Number,
-    required: false
-  },
   ho_ten: {
     type: String,
     required: true

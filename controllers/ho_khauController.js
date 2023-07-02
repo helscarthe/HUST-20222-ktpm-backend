@@ -12,8 +12,6 @@ const getHo_khau = async (req, res) => {
   const { id } = req.params
 
   const ho_khau = await Ho_khau.find({id_nha : id})
-  console.log(ho_khau)
-  console.log(Object.keys(ho_khau).length)
 
   if (!ho_khau.length) {
     return res.status(404).json({error: 'Hộ khẩu không tồn tại.'})
@@ -24,11 +22,11 @@ const getHo_khau = async (req, res) => {
 
 // create new ho_khau
 const createHo_khau = async (req, res) => {
-  const {id_nha, id_chu_nha, dia_chi} = req.body;
+  const {id_nha, dia_chi} = req.body;
 
   // add doc to db
   try {
-    const ho_khau = await Ho_khau.create({id_nha, id_chu_nha, dia_chi})
+    const ho_khau = await Ho_khau.create({id_nha, dia_chi})
     res.status(200).json(ho_khau);
   } catch (error) {
     res.status(400).json({error: error.message});
