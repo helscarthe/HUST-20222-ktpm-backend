@@ -1,7 +1,9 @@
 const express = require('express')
 const {
-  getHousings,
-  getHousing,
+  getHo_khau,
+  getCong_dan,
+  getHo_khaus,
+  getCong_dans,
   createHousing,
   deleteHousing,
   updateHousing
@@ -9,9 +11,13 @@ const {
 
 const router = express.Router()
 
-router.get('/', getHousings)
+router.get('/ho_khau/:id', getHo_khau)
 
-router.get('/:id', getHousing)
+router.get('/cong_dan/:id', getCong_dan)
+
+router.get('/ho_khau', getHo_khaus)
+
+router.get('/cong_dan', getCong_dans)
 
 router.post('/', createHousing)
 
