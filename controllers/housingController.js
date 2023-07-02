@@ -2,7 +2,7 @@ const Housing = require('../models/housingModel')
 
 // get all cong_dan
 const getCong_dans = async (req, res) => {
-  const housings = await Housing.find({}).populate("cong_dan").populate("nha").sort({id_nha: 1})
+  const housings = await Housing.find({}).populate("cong_dan").populate("nha").sort({id_cong_dan: 1})
 
   res.status(200).json(housings)
 }
