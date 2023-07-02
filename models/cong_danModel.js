@@ -8,6 +8,10 @@ const cong_dan_Schema = new Schema({
     required: true,
     unique: true
   },
+  id_nha: {
+    type: Number,
+    required: false
+  },
   ho_ten: {
     type: String,
     required: true
@@ -39,14 +43,6 @@ const cong_dan_Schema = new Schema({
   nghe_nghiep: {
     type: String,
     required: true
-  },
-  id_thuong_tru: {
-    type: Number,
-    required: false
-  },
-  id_tam_tru: {
-    type: Number,
-    required: false
   }
 }, {collection: 'cong_dan'})
 

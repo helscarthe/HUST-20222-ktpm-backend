@@ -24,11 +24,11 @@ const getCong_dan = async (req, res) => {
 
 // create new cong_dan
 const createCong_dan = async (req, res) => {
-  const {id_cong_dan, ho_ten, ho_ten_khac, ngay_sinh, CCCD, dan_toc, gioi_tinh, quoc_tich, nghe_nghiep, id_thuong_tru, id_tam_tru} = req.body;
+  const {id_cong_dan, id_nha, ho_ten, ho_ten_khac, ngay_sinh, CCCD, dan_toc, gioi_tinh, quoc_tich, nghe_nghiep} = req.body;
 
   // add doc to db
   try {
-    const cong_dan = await Cong_dan.create({id_cong_dan, ho_ten, ho_ten_khac, ngay_sinh, CCCD, dan_toc, gioi_tinh, quoc_tich, nghe_nghiep, id_thuong_tru, id_tam_tru})
+    const cong_dan = await Cong_dan.create({id_cong_dan, id_nha, ho_ten, ho_ten_khac, ngay_sinh, CCCD, dan_toc, gioi_tinh, quoc_tich, nghe_nghiep})
     res.status(200).json(cong_dan);
   } catch (error) {
     res.status(400).json({error: error.message});
