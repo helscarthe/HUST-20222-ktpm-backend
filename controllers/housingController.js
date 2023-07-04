@@ -1,4 +1,5 @@
 const Housing = require('../models/housingModel')
+const Cong_dan = require('../models/cong_danModel')
 
 // get all cong_dan
 const getCong_dans = async (req, res) => {
@@ -12,6 +13,25 @@ const getCong_dan = async (req, res) => {
   const { id } = req.params
 
   const housing = await Housing.find({id_cong_dan : id}).populate("cong_dan").populate("nha")
+
+  if (!housing.length) {
+    return res.status(404).json({error: 'Công dân không tồn tại.'})
+  }
+
+  res.status(200).json(housing)
+}
+
+// get one cong_dan
+const getCong_danbyCCCD = async (req, res) => {
+  const { cccd } = req.params
+
+  const cong_dan = await Cong_dan.find({CCCD : cccd}).lean()
+
+  if (!cong_dan.length) {
+    return res.status(404).json({error: 'Công dân không tồn tại.'})
+  }
+
+  const housing = await Housing.find({id_cong_dan : cong_dan[0].id_cong_dan}).populate("cong_dan").populate("nha")
 
   if (!housing.length) {
     return res.status(404).json({error: 'Công dân không tồn tại.'})
@@ -84,6 +104,7 @@ const updateHousing = async (req, res) => {
 module.exports = {
   getHo_khau,
   getCong_dan,
+  getCong_danbyCCCD,
   getHo_khaus,
   getCong_dans,
   createHousing,

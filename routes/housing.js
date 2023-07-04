@@ -2,6 +2,7 @@ const express = require('express')
 const {
   getHo_khau,
   getCong_dan,
+  getCong_danbyCCCD,
   getHo_khaus,
   getCong_dans,
   createHousing,
@@ -14,6 +15,7 @@ const router = express.Router()
 router.get('/ho_khau/:id', getHo_khau)
 
 router.get('/cong_dan/:id', getCong_dan)
+router.get('/cong_dan/cccd/:cccd', getCong_danbyCCCD)
 
 router.get('/ho_khau', getHo_khaus)
 
