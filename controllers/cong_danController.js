@@ -51,6 +51,12 @@ const createCong_dan = async (req, res) => {
 const deleteCong_dan = async (req, res) => {
   const { id } = req.params
 
+  const housing = await Housing.find({id_cong_dan: id, la_chu_ho: true})
+
+  if (housing.length) {
+    return res.status(400).json({error: 'Công dân là chủ hộ, không được xóa'})
+  }
+
   const cong_dan = await Cong_dan.findOneAndDelete({id_cong_dan : id})
 
   if (!cong_dan) {
