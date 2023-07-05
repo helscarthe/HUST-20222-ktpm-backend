@@ -109,10 +109,14 @@ const updateHousing = async (req, res) => {
   const ho_khau = await Ho_khau.find({id_nha: id})
 
   if (!ho_khau.length) {
-    return res.status(400).json({error: 'Hộ khẩu không tồn tại.'})
+    return res.status(404).json({error: 'Hộ khẩu không tồn tại.'})
   }
 
   const { chuho_id, members } = req.body
+
+  if (chuho_id == null || members == null) {
+    return res.status(400).json(req.body)
+  }
 
   await Housing.deleteMany({id_nha: id})
 
