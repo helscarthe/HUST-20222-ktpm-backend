@@ -48,10 +48,25 @@ const getHo_khaus = async (req, res) => {
 }
 
 // get one ho_khau
-const getHo_khau = async (req, res) => {
+const getHo_khau_Chu_ho = async (req, res) => {
   const { id } = req.params
 
   const housing = await Housing.find({la_chu_ho: true, id_nha : id}).populate("cong_dan").populate("nha")
+
+  if (!housing.length) {
+    return res.status(404).json({error: 'Hộ khẩu không tồn tại.'})
+  }
+
+  res.status(200).json(housing)
+}
+
+
+
+// get one ho_khau
+const getHo_khau_Thanh_vien = async (req, res) => {
+  const { id } = req.params
+
+  const housing = await Housing.find({la_chu_ho: false, id_nha : id}).populate("cong_dan").populate("nha")
 
   if (!housing.length) {
     return res.status(404).json({error: 'Hộ khẩu không tồn tại.'})
@@ -102,7 +117,8 @@ const updateHousing = async (req, res) => {
 }
 
 module.exports = {
-  getHo_khau,
+  getHo_khau_Chu_ho,
+  getHo_khau_Thanh_vien,
   getCong_dan,
   getCong_danbyCCCD,
   getHo_khaus,
