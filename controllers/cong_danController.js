@@ -1,4 +1,6 @@
 const Cong_dan = require('../models/cong_danModel')
+const InfoCOVID = require('../models/infoPersonalModel')
+const Housing = require('../models/housingModel')
 
 // get all cong_dan
 const getCong_dans_withHousinginfo = async (req, res) => {
@@ -52,8 +54,11 @@ const deleteCong_dan = async (req, res) => {
   const cong_dan = await Cong_dan.findOneAndDelete({id_cong_dan : id})
 
   if (!cong_dan) {
-    return res.status(400).json({error: 'Công dân không tồn tại.'})
+    return res.status(404).json({error: 'Công dân không tồn tại.'})
   }
+
+  await Housing.findOneAndDelete({id_cong_dan : id})
+  await InfoCOVID.findOneAndDelete({id_cong_dan : id})
 
   res.status(200).json(cong_dan)
 }
