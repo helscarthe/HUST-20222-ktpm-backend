@@ -2,7 +2,12 @@ const Cong_dan = require('../models/cong_danModel')
 
 // get all cong_dan
 const getCong_dans_withHousinginfo = async (req, res) => {
-  const cong_dans = await Cong_dan.find({}).populate("info_ho_khau").sort({id_cong_dan: 1})
+  const cong_dans = await Cong_dan.find({}).populate({ 
+    path: 'info_ho_khau',
+    populate: {
+      path: 'nha'
+    } 
+ }).sort({id_cong_dan: 1})
 
   res.status(200).json(cong_dans)
 }

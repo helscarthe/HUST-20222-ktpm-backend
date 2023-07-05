@@ -86,14 +86,41 @@ const housing_Schema = new Schema({
   toObject: {virtuals: true}
 })
 
+const ho_khau_Schema = new Schema({
+  id_nha: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  dia_chi: {
+    type: String,
+    required: true
+  },
+  info_thanh_vien: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'info_nhan_khau'
+  }
+}, {
+  collection: 'ho_khau',
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
+})
+
 cong_dan_Schema.virtual('info_ho_khau', {
   ref: 'info_nhan_khau',
   localField: 'id_cong_dan',
   foreignField: 'id_cong_dan'
 });
 
+housing_Schema.virtual('nha', {
+  ref: 'ho_khau',
+  localField: 'id_nha',
+  foreignField: 'id_nha'
+});
+
 const db = mongoose.connection.useDb("nhan_khau")
 
 const Housing = db.model('info_nhan_khau', housing_Schema)
+const Ho_khau = db.model('ho_khau', ho_khau_Schema)
 
 module.exports = db.model('cong_dan', cong_dan_Schema)
