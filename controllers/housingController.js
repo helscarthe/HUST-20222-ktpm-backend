@@ -1,5 +1,6 @@
 const Housing = require('../models/housingModel')
 const Cong_dan = require('../models/cong_danModel')
+const Ho_khau = require('../models/ho_khauModel')
 
 // get all cong_dan
 const getCong_dans = async (req, res) => {
@@ -105,15 +106,25 @@ const deleteHousing = async (req, res) => {
 const updateHousing = async (req, res) => {
   const { id } = req.params
 
-  const housing = await Housing.findOneAndUpdate({id_nha : id}, {
-    ...req.body
-  })
+  const ho_khau = await Ho_khau.find({id_nha: id})
 
-  if (!housing) {
-    return res.status(400).json({error: 'Công dân không tồn tại.'})
+  if (!ho_khau.length) {
+    return res.status(400).json({error: 'Hộ khẩu không tồn tại.'})
   }
 
-  res.status(200).json(housing)
+  const { chuho_id, members } = req.body
+
+  await Housing.deleteMany({id_nha: id})
+
+  try {
+    await Housing.create({id_nha: id, id_cong_dan: chuho_id, la_chu_ho: true, trang_thai_cu_tru: 1})
+    members.forEach(async thanh_vien => {
+      await Housing.create({id_nha: id, id_cong_dan: thanh_vien.id, la_chu_ho: false, trang_thai_cu_tru: 1, quan_he_chu_ho: thanh_vien.role})
+    })
+    res.status(200).json({msg: 'OK!'})
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
 }
 
 module.exports = {

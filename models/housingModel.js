@@ -90,15 +90,15 @@ const housing_Schema = new Schema({
   },
   quan_he_chu_ho: {
     type: String,
-    required: true
+    required: false
   },
   bat_dau_tam_tru_vang: {
     type: Date,
-    required: true
+    required: false
   },
   ket_thuc_tam_tru_vang: {
     type: Date,
-    required: true
+    required: false
   }
 }, {
   collection: 'info_nhan_khau',
