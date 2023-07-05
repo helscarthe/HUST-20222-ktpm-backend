@@ -115,6 +115,8 @@ const updateHousing = async (req, res) => {
   const { chuho_id, members } = req.body
 
   if (chuho_id == null || members == null) {
+    console.log(chuho_id)
+    console.log(members)
     return res.status(400).json(req.body)
   }
 
