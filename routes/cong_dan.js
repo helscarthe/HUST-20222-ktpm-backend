@@ -1,5 +1,6 @@
 const express = require('express')
 const {
+  getCong_dans_withHousinginfo,
   getCong_dans,
   getCong_dan,
   createCong_dan,
@@ -8,6 +9,8 @@ const {
 } = require('../controllers/cong_danController')
 
 const router = express.Router()
+
+router.get('/housingInfo', getCong_dans_withHousinginfo)
 
 router.get('/', getCong_dans)
 

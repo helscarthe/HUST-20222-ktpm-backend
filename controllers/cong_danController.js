@@ -1,6 +1,13 @@
 const Cong_dan = require('../models/cong_danModel')
 
 // get all cong_dan
+const getCong_dans_withHousinginfo = async (req, res) => {
+  const cong_dans = await Cong_dan.find({}).populate("info_ho_khau").sort({id_cong_dan: 1})
+
+  res.status(200).json(cong_dans)
+}
+
+// get all cong_dan
 const getCong_dans = async (req, res) => {
   const cong_dans = await Cong_dan.find({}).sort({id_cong_dan: 1})
 
@@ -62,6 +69,7 @@ const updateCong_dan = async (req, res) => {
 }
 
 module.exports = {
+  getCong_dans_withHousinginfo,
   getCong_dans,
   getCong_dan,
   createCong_dan,
